@@ -26,9 +26,9 @@
 1. 确保已安装 [Golang](https://golang.org/dl/) 环境，版本在 `1.18` 或更高。
 2. 安装：
    ```bash
-   go install github.com/zcyc/fs-git-benchmark@latest
+   go install github.com/zcyc/fs-git-benchmark
    ```
-3. 运行程序：
+3. 运行：
    ```bash
    ./fs-git-benchmark
    ```

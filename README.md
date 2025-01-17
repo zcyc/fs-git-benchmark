@@ -40,22 +40,26 @@
 
 程序可以通过以下参数控制运行行为：
 
-| 参数名称      | 类型    | 默认值 | 说明                                                      |
-| ------------- | ------- | ------ | --------------------------------------------------------- |
-| `-repo`       | string  | 无     | 需要操作的远程 Git 仓库地址（必需提供）。                 |
-| `-concurrency`| integer | 1      | 并行测试的数量限制，表示同时运行多少个仓库操作流程。        |
-| `-count`      | integer | 1      | 指定操作重复的次数，表示从远程仓库克隆的仓库实例数量。      |
+| 参数名称           | 类型      | 默认值   | 说明                          |
+|----------------|---------|-------|-----------------------------|
+| `-repo`        | string  | 无     | 需要操作的远程 Git 仓库地址（必需提供）。     |
+| `-concurrency` | integer | 1     | 并行测试的数量限制，表示同时运行多少个仓库操作流程。  |
+| `-count`       | integer | 1     | 指定操作重复的次数，表示从远程仓库克隆的仓库实例数量。 |
+| `-use-go-git`  | boolean | false | 指定是否使用 go-git，默认使用本地 git。   |
+| `-ssh-key`     | string  | 无     | 指定 go-git 使用的密钥（绝对路径）。      |
 
 ### 使用示例
 
-1. 测试单线程，执行 1 次：
+1. 测试单线程，使用本地 git，执行 1 次：
    ```bash
    ./fs-git-benchmark -repo=https://github.com/example/repo.git -concurrency=1 -count=1
+
    ```
 
-2. 并发测试：运行 4 个线程，分别执行 5 次：
+2. 并发测试，使用 go-git：运行 4 个线程，分别执行 5 次：
    ```bash
-   ./fs-git-benchmark -repo=https://github.com/example/repo.git -concurrency=4 -count=5
+   ./fs-git-benchmark -repo=https://github.com/example/repo.git -concurrency=4 -count=5 -use-go-git=true -ssh-key=/Users/charlie/.ssh/id_rsa
+
    ```
 
 3. 查看帮助：

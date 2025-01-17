@@ -317,7 +317,7 @@ func main() {
 		log.Fatalf("Failed to get current directory: %v", err)
 	}
 
-	baseDir := filepath.Join(currentDir, "git-speed-test-tmp")
+	baseDir := filepath.Join(currentDir, "fs-git-benchmark-tmp")
 	err = os.MkdirAll(baseDir, 0755)
 	if err != nil {
 		log.Fatalf("Failed to create base directory %s: %v", baseDir, err)
@@ -353,5 +353,5 @@ func main() {
 		log.Printf("Logs for repo_%d:\n%s", i, logs)
 	}
 
-	log.Printf("Completed git speed test in %s", elapsedTime)
+	log.Printf("Completed fs git benchmark in %s", elapsedTime)
 }

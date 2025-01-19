@@ -135,8 +135,8 @@ func commitUsingGoGit(repoPath, message string) error {
 
 	_, err = workTree.Commit(message, &git.CommitOptions{
 		Author: &object.Signature{
-			Name:  "fs-git-benchmark",
-			Email: "fs-git-benchmark@example.com",
+			Name:  "git-bench",
+			Email: "git-bench@example.com",
 			When:  time.Now(),
 		},
 	})
@@ -317,7 +317,7 @@ func main() {
 		log.Fatalf("Failed to get current directory: %v", err)
 	}
 
-	baseDir := filepath.Join(currentDir, "fs-git-benchmark-tmp")
+	baseDir := filepath.Join(currentDir, "git-bench-tmp")
 	err = os.MkdirAll(baseDir, 0755)
 	if err != nil {
 		log.Fatalf("Failed to create base directory %s: %v", baseDir, err)
@@ -327,7 +327,7 @@ func main() {
 	var wg sync.WaitGroup
 	workChan := make(chan int, *concurrency)
 	startTime := time.Now()
-	log.Printf("Starting fs git benchmark with concurrency=%d, count=%d, useGoGit=%v sshKey=%s", *concurrency, *count, *useGoGit, *sshKey)
+	log.Printf("Starting git bench with concurrency=%d, count=%d, useGoGit=%v sshKey=%s", *concurrency, *count, *useGoGit, *sshKey)
 
 	results := make([]string, *count)
 	var resultsMu sync.Mutex
@@ -353,5 +353,5 @@ func main() {
 		log.Printf("Logs for repo_%d:\n%s", i, logs)
 	}
 
-	log.Printf("Completed fs git benchmark in %s", elapsedTime)
+	log.Printf("Completed git bench in %s", elapsedTime)
 }

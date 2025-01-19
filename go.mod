@@ -1,4 +1,4 @@
-module github.com/zcyc/fs-git-benchmark
+module github.com/zcyc/git-bench
 
 go 1.23
 

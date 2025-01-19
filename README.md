@@ -26,7 +26,7 @@
 1. Ensure [Golang](https://golang.org/dl/) is installed with version `1.18` or higher.
 2. Install the tool:
    ```bash
-   go install github.com/zcyc/git-bench
+   go install github.com/zcyc/git-bench@latest
    ```
 
 3. Run the tool:

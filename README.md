@@ -1,6 +1,6 @@
-# fs-git-benchmark
+# git-bench
 
-`fs-git-benchmark` is an efficient Git performance benchmarking tool designed to measure the execution speed of Git operations, such as `clone`, `checkout`, `add`, `commit`, and `push`. This tool helps evaluate performance between local Git clients and remote repositories. It also supports concurrent and repeated executions to broaden testing coverage.
+`git-bench` is an efficient Git performance benchmarking tool designed to measure the execution speed of Git operations, such as `clone`, `checkout`, `add`, `commit`, and `push`. This tool helps evaluate performance between local Git clients and remote repositories. It also supports concurrent and repeated executions to broaden testing coverage.
 
 ## Features
 
@@ -26,12 +26,12 @@
 1. Ensure [Golang](https://golang.org/dl/) is installed with version `1.18` or higher.
 2. Install the tool:
    ```bash
-   go install github.com/zcyc/fs-git-benchmark
+   go install github.com/zcyc/git-bench
    ```
 
 3. Run the tool:
    ```bash
-   ./fs-git-benchmark
+   ./git-bench
    ```
 
 ---
@@ -54,17 +54,17 @@ You can customize the behavior of this tool with the following parameters:
 
 1. Single-threaded test using the local Git client, run 1 time:
    ```bash
-   ./fs-git-benchmark -repo=https://github.com/example/repo.git -concurrency=1 -count=1
+   ./git-bench -repo=https://github.com/example/repo.git -concurrency=1 -count=1
    ```
 
 2. Concurrent test using `go-git`: Run with 4 threads, 5 executions each:
    ```bash
-   ./fs-git-benchmark -repo=https://github.com/example/repo.git -concurrency=4 -count=5 -use-go-git=true -ssh-key=/Users/charlie/.ssh/id_rsa
+   ./git-bench -repo=https://github.com/example/repo.git -concurrency=4 -count=5 -use-go-git=true -ssh-key=/Users/charlie/.ssh/id_rsa
    ```
 
 3. Display help:
    ```bash
-   ./fs-git-benchmark -h
+   ./git-bench -h
    ```
 
 Sample Output:
@@ -88,7 +88,7 @@ After the test, all output logs record the details of each step, including the t
 ## How It Works
 
 1. **Clone Repository**:
-    - The program creates a `fs-git-benchmark-tmp/` subdirectory in the current working directory. All cloned repositories are stored in this directory.
+    - The program creates a `git-bench-tmp/` subdirectory in the current working directory. All cloned repositories are stored in this directory.
     - Each repository is stored under a directory named `repo_0`, `repo_1`, etc.
 
 2. **Concurrent Execution**:
@@ -107,7 +107,7 @@ After the test, all output logs record the details of each step, including the t
     - After all workflows complete, the tool summarizes results and prints them to the console.
 
 5. **Temporary Directory Cleanup**:
-    - Once testing is complete, the `fs-git-benchmark-tmp/` subdirectory is automatically cleaned up to maintain a tidy workspace.
+    - Once testing is complete, the `git-bench-tmp/` subdirectory is automatically cleaned up to maintain a tidy workspace.
 
 ---
 
@@ -135,14 +135,14 @@ After the test, all output logs record the details of each step, including the t
 Use high concurrency and repeated executions to assess the response time of a remote repository under different network conditions. For example:
 
 ```bash
-./fs-git-benchmark -repo=https://github.com/example/repo.git -concurrency=10 -count=20
+./git-bench -repo=https://github.com/example/repo.git -concurrency=10 -count=20
 ```
 
 By observing the time taken for `clone` and `push`, you can identify potential network latency or repository performance issues.
 
 ### Automating Repository Workflow Validation
 
-In test environments, use `fs-git-benchmark` to simulate workflows involving creating and pushing new branches and files, ensuring the environment is stable under load.
+In test environments, use `git-bench` to simulate workflows involving creating and pushing new branches and files, ensuring the environment is stable under load.
 
 ---
 
